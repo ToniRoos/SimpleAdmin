@@ -1,0 +1,11 @@
+$bg-color: rgba(0,150,150,0.9);
+$bg-color-lighter: lighten($bg-color, 10%);
+$bg-color-light: lighten($bg-color, 20%);
+$bg-color-light-transparentize: transparentize($bg-color-lighter, 0.2);
+$bg-color-inactive: rgba(200,200,200,0.9);
+
+$textColor: #fff;
+$textSize: 18px;
+$textFont: Verdana, Geneva, Tahoma, sans-serif;
+
+$box-shadow: 0 0 15px #333;

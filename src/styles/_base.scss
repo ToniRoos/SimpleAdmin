@@ -1,0 +1,29 @@
+@import 'variables';
+
+.show {
+	visibility: visible;
+	display: initial;
+	opacity: 1 !important;
+	transition:opacity 500ms ease-out !important;
+}
+
+.hide {
+	visibility: hidden;
+	display: none;
+	opacity: 0 !important;
+	transition:visibility 0s, opacity 500ms ease-out !important;
+}
+
+.active {
+	background: $bg-color-light;
+	transition: background-color 200ms linear;
+}
+
+.inactive {
+	background-color: $bg-color-inactive;
+	transition: background-color 200ms linear;
+}
+
+.pointer {
+	cursor: pointer;
+}

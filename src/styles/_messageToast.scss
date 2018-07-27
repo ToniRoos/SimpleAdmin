@@ -1,0 +1,22 @@
+@import 'variables';
+
+.messageToast {
+	position: fixed;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+	z-index: 99999;
+	background-color: $bg-color;
+	color: $textColor;
+}
+
+.messageToastInner {
+	flex-grow: 1;
+	align-self: center;
+    text-align: center;
+    line-height: 3.5;
+    font-size: 30px;
+    height: 100px;
+}

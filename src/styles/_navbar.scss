@@ -1,0 +1,29 @@
+@import 'variables';
+
+.easyAdmin-nav {
+	position: fixed;
+	bottom: 0px;
+	left: 5%;
+	width: 90%;
+	height: 50px;
+    color: $textColor;
+    font-family: $textFont;
+    font-size: $textSize;
+	display: flex;
+}
+
+.easyAdmin-navItem {
+	box-shadow: $box-shadow;
+	background: $bg-color-light-transparentize;
+	display: inline-flex;
+	padding: 10px;
+	align-items: center;
+}
+
+.flexGrowMax {
+	flex-grow: 1;
+}
+
+.easyAdmin-navText {
+	padding: 0 20px 0 20px;
+}

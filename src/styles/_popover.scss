@@ -1,0 +1,35 @@
+@import 'variables';
+
+.easyAdmin-popover {
+	background: $bg-color-light-transparentize;
+}
+
+.easyAdmin-popover-selection {
+	background: $bg-color-light-transparentize;
+	position: absolute;
+	pointer-events: none;
+}
+
+.easyAdmin-popover-menu {
+	position: absolute;
+	background-color:$bg-color-inactive;
+}
+
+.easyAdmin-popover-button {
+	padding: 5px;
+	color: $textColor;
+}
+
+.easyAdmin-popover-menu:hover {
+	background: $bg-color-light-transparentize;
+}
+
+.easyAdmin-popover-input {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+	border: 0;
+	position: absolute;
+	background: none;
+}
