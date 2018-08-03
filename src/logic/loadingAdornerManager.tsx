@@ -35,6 +35,16 @@ class LoadingAdornerManager {
     hideLoadingAdorner() {
         this.ee.emit('hideLoadingAdornerEvent');
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * returns the rendered UI of the loading adorner
+    */
+    // getView() {
+    //     return this.ui;
+    // }
+>>>>>>> d9c1d6647f94ed5b0f984beab3110560ec63e5f9
 }
 
 export const loadingAdornerManager = new LoadingAdornerManager();
