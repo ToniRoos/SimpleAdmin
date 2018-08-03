@@ -49,12 +49,6 @@ const messageToatId = "messageToast";
 messageToat.id = messageToatId;
 $("body").append(messageToat);
 
-const loadingAdorner = document.createElement('div');
-const loadingAdornerId = "loadingAdorner";
-loadingAdorner.id = loadingAdornerId;
-$("body").append(loadingAdorner);
-
-ReactDom.render(loadingAdornerManager.getView(), document.getElementById(loadingAdornerId));
 loadingAdornerManager.showLoadingAdorner();
 
 ReactDom.render(messageToastManager.getView(), document.getElementById(messageToatId));

@@ -9,6 +9,13 @@ interface ResponseData {
     data: string;
 }
 
+/**
+ * Sends a http request to a php file.
+ * @param phpFuntion The name of php file.
+ * @param type mime type.
+ * @param data data to send.
+ * @param callback function that will be called after a successful response.
+*/
 export function sendHttpRequest(phpFuntion: phpFunction, type: mimeType, data: any, callback: (parameter: ResponseData) => void) {
 
     $.ajax({
