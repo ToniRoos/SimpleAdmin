@@ -33,16 +33,20 @@ export class LoginDialog extends React.Component<LoginProps, LoginData> {
         });
     }
 
+    componentDidMount() {
+        document.getElementById("easyAdmin_login_user").focus();
+    }
+
     render() {
 
         return <div className="formBox">
-            <input onChange={
+            <input id="easyAdmin_login_user" onChange={
                 event => {
                     const newValue = event.target.value;
                     this.setState({ user: newValue });
                 }}>
             </input>
-            <input type="password" onChange={
+            <input id="easyAdmin_login_pwd" type="password" onChange={
                 event => {
                     const newValue = event.target.value;
                     this.setState({ pwd: newValue });
