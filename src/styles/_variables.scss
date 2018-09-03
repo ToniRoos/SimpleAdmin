@@ -3,6 +3,7 @@ $bg-color-lighter: lighten($bg-color, 10%);
 $bg-color-light: lighten($bg-color, 20%);
 $bg-color-light-transparentize: transparentize($bg-color-lighter, 0.2);
 $bg-color-inactive: rgba(200,200,200,0.9);
+$bg-color-inactive-dark: rgba(50,50,50,0.9);
 
 $textColor: #fff;
 $textSize: 18px;

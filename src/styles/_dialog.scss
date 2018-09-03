@@ -1,0 +1,39 @@
+@import 'variables';
+
+.dialog {
+    align-items: center;
+    justify-content: center;
+    background-color: $bg-color-inactive-dark;
+    color: $textColor;
+    display: flex;
+    font-family: $textFont;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99999;
+}
+
+.dialogInner {
+	font-size: 30px;
+    text-align: center;
+    width: 300px;
+}
+
+Input {
+    background: $bg-color-light-transparentize;
+    font-size: 20px;
+    border: none;
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+}
+
+.dialogButton {
+    align-items: center;
+    background: $bg-color;
+    display: inline-flex;
+    padding: 10px;
+    margin-top: 15px;
+}

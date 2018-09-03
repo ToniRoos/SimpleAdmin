@@ -4,24 +4,6 @@
 	to {transform: rotate(360deg);}
 }
 
-.loadingAdorner {
-	background: $bg-color;
-    position: fixed;
-    display: flex;
-    height: 100%;
-    width: 100%;
-    left: 0px;
-    top: 0px;
-    z-index: 99999;
-    color: $textColor;
-}
-
-.loadingAdornerInner {
-	flex-grow: 1;
-    text-align: center;
-    align-self: center;
-}
-
 .rotate {
 	animation: spinner 1.8s linear infinite;
 }

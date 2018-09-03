@@ -1,13 +1,33 @@
 <?php
+    session_start();
+
     include('jsonRequestManager.php');
     include('fileManager.php');
     include('tagFinder.php');
     include('translationManager.php');
 
     $data = resolveHttpRequest();
+    // path to page, that is be edited
     $file = $_SERVER['DOCUMENT_ROOT'].$data['page'];
-    $textList = $data['textList'];
-   
+    // list of changed tags
+    $changedTags = $data['changedTags'];
+
+    if (!isset($_SESSION['user'])) {
+        sendErrorResponse(Errors::NO_USER_LOGGED_IN, "No user logged in!");
+    }
+
+    $user = $_SESSION['user'];
+    $logintime = $_SESSION['logintime'];
+    $timeout = 900; // 15min
+    $now = time();
+
+    if ($now - $logintime > $timeout) {
+        sendErrorResponse(Errors::SESSION_TIMED_OUT, "User session timed out! Login again.");
+    }
+
+    // reset login time to move on with current session
+    $_SESSION['logintime'] = $now;
+
     try {
         if (file_exists($file)) {
 
@@ -19,7 +39,7 @@
             getAllTags($fileContent, $allTags, 0);
 
             $offset = 0;
-            foreach($textList as $key => $value) {
+            foreach($changedTags as $key => $value) {
 
                 if (!is_int($key)) {
                     continue;
@@ -81,7 +101,7 @@
             }
 
             // check if id is already set
-            $checkLanugagePhp = "<?php include('php/checkLanguage.php');?>";
+            $checkLanugagePhp = "<?php include('SimpleAdmin/php/checkLanguage.php');?>";
             if (!(strpos($fileContent, $checkLanugagePhp) !== false)) {
                 $fileContent = $checkLanugagePhp.$fileContent;
             }

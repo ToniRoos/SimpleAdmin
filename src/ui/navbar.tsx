@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { ChangeStorage } from "../logic/changeStorage";
-import { sendHttpRequest } from '../logic/httpRequestManager';
-import { loadingAdornerManager } from '../logic/loadingAdornerManager';
+import { sendHttpRequest, ErrorData, Erros } from '../logic/httpRequestManager';
+import { dialogManager } from "../logic/dialogManager";
 import { messageToastManager } from '../logic/messageToastManager';
+import { controlIds } from "../data/controlIds";
 
 interface NavbarData {
     tags: HTMLElement[];
@@ -19,6 +20,12 @@ export class Navbar extends React.Component<NavbarData> {
         super(props);
     }
 
+    errorCallback(error: ErrorData) {
+        if (error.errorCode === Erros.NO_USER_LOGGED_IN || error.errorCode === Erros.SESSION_TIMED_OUT) {
+            dialogManager.showLoginDialog(controlIds.loginDialog);
+        }
+    }
+
     render() {
 
         return <div className="easyAdmin-nav">
@@ -28,12 +35,10 @@ export class Navbar extends React.Component<NavbarData> {
                 const changeStorage = this.props.changeStorage;
                 if (changeStorage.noChanges()) return;
 
-                loadingAdornerManager.showLoadingAdorner();
-
                 const changedTags = changeStorage.getTags();
                 sendHttpRequest("pageScanner", "post", {
                     page: location.pathname,
-                    textList: changedTags.map(tag => {
+                    changedTags: changedTags.map(tag => {
                         const index = this.props.tags.indexOf(tag);
                         return {
                             index: index,
@@ -45,10 +50,9 @@ export class Navbar extends React.Component<NavbarData> {
                 },
                     (parameter) => {
                         this.props.changeStorage.clearStorage();
-                        loadingAdornerManager.hideLoadingAdorner();
-
                         messageToastManager.showMessageToast("Saved!", 3000);
-                    }
+                    },
+                    this.errorCallback
                 );
             }}>
                 <i className="fa fa-save fa-2x"></i>

@@ -32,10 +32,18 @@
     exit;
  }
 
- function sendErrorResponse($errorText) {
+ function sendErrorResponse($errorCode, $errorText) {
     header("HTTP/1.1 500 OK");
-    echo $errorText;
+    echo json_encode(array("errorCode" => $errorCode, "errorText" => $errorText));
     exit;
+ }
+
+ abstract class Errors
+ {
+     const SESSION_TIMED_OUT = 1100;
+     const INVALID_USER_PWD = 1101;
+     const NO_USER_LOGGED_IN = 1102;
+     const APP_ALREADY_INITIALIZED = 1103;
  }
 
 ?>
