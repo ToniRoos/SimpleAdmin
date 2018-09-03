@@ -26,6 +26,13 @@ export class LoginDialog extends React.Component<LoginProps, LoginData> {
         });
     }
 
+    invokeLogin() {
+        sendHttpRequest("userManagement/verifyLogin", "post", { user: this.state.user, pwd: this.state.pwd }, (response) => {
+            messageToastManager.showMessageToast(response.data, 1000);
+            this.props.hide();
+        });
+    }
+
     render() {
 
         return <div className="formBox">
@@ -39,15 +46,17 @@ export class LoginDialog extends React.Component<LoginProps, LoginData> {
                 event => {
                     const newValue = event.target.value;
                     this.setState({ pwd: newValue });
-                }}></input>
-            <div className="dialogButton pointer" onClick={event => {
-
-                sendHttpRequest("userManagement/verifyLogin", "post", { user: this.state.user, pwd: this.state.pwd }, (response) => {
-                    messageToastManager.showMessageToast(response.data, 1000);
-                    this.props.hide();
-                });
-
-            }}>
+                }}
+                onKeyDown={
+                    event => {
+                        // check if enter was hit
+                        if (event.keyCode === 13) {
+                            this.invokeLogin();
+                        }
+                    }
+                }
+            />
+            <div className="dialogButton pointer" onClick={this.invokeLogin.bind(this)}>
                 <i className="fa fa-arrow-right"></i>
                 <div className="easyAdmin-navText">
                     Login

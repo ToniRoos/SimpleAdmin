@@ -22,17 +22,17 @@ class DialogManager {
         ReactDom.render(ui, document.getElementById(dialogId));
     }
 
-    showLoginDialog(dialogId: string, timeout?: number) {
+    showDialog(dialogId: string, timeout?: number) {
         this.ee.emit(`show_${dialogId}`);
 
         if (timeout !== undefined) {
             window.setTimeout(() => {
-                this.hideLoginDialog(dialogId);
+                this.hideDialog(dialogId);
             }, timeout);
         }
     }
 
-    hideLoginDialog(dialogId: string) {
+    hideDialog(dialogId: string) {
         this.ee.emit(`hide_${dialogId}`);
     }
 }

@@ -22,7 +22,7 @@ export class Navbar extends React.Component<NavbarData> {
 
     errorCallback(error: ErrorData) {
         if (error.errorCode === Erros.NO_USER_LOGGED_IN || error.errorCode === Erros.SESSION_TIMED_OUT) {
-            dialogManager.showLoginDialog(controlIds.loginDialog);
+            dialogManager.showDialog(controlIds.loginDialog);
         }
     }
 

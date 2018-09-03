@@ -43,11 +43,13 @@ createDiv(controlIds.navbar);
 // login
 dialogManager.createDialog(<LoginDialog />, controlIds.loginDialog);
 dialogManager.createDialog(<RegisterDialog />, controlIds.registerDialog);
-sendHttpRequest("userManagement/appInitializedCheck", "post", {}, (appInitialized) => {
-    if (appInitialized.data) {
-        dialogManager.showLoginDialog(controlIds.loginDialog);
+sendHttpRequest("userManagement/appInitializedCheck", "post", {}, (response: any) => {
+    if (response.data.initialized) {
+        if (!response.data.sessionActive) {
+            dialogManager.showDialog(controlIds.loginDialog);
+        }
     } else {
-        dialogManager.showLoginDialog(controlIds.registerDialog);
+        dialogManager.showDialog(controlIds.registerDialog);
     }
 });
 

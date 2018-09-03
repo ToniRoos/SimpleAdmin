@@ -1,4 +1,5 @@
 <?php
+    session_start();
     // imports
     include('../jsonRequestManager.php');
     include('../fileManager.php');
@@ -23,8 +24,14 @@
     
     $joinedVars = "$".$user." = '".$password_hash."';";
 
-    mkdir($folder);
+    $folderExists = file_exists($folder);
+    if (!$folderExists) {
+        mkdir($folder);
+    }
+    
     replaceFile($fileName, "<?php\n\t".$joinedVars."\n?>");  
 
+    $_SESSION['user'] = $user;
+    $_SESSION['logintime'] = time();
     sendSuccessResponse('Registration successful!');
 ?>

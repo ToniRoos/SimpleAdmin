@@ -33,21 +33,21 @@ export function sendHttpRequest(phpFuntion: phpFunction,
     successCallback: (parameter: ResponseData) => void,
     errorCallback?: (parameter: ErrorData) => void) {
 
-    dialogManager.showLoginDialog(controlIds.loadingAdorner);
+    dialogManager.showDialog(controlIds.loadingAdorner);
 
     $.ajax({
         type: type,
         url: "SimpleAdmin/php/" + phpFuntion + ".php",
         data: JSON.stringify(data),
-        success: (receivedData) => {
+        success: (receivedData: any) => {
             successCallback(receivedData);
-            dialogManager.hideLoginDialog(controlIds.loadingAdorner);
+            dialogManager.hideDialog(controlIds.loadingAdorner);
         },
         error: (error) => {
 
             console.error(error.responseText);
             // loadingAdornerManager.hideLoadingAdorner();
-            dialogManager.hideLoginDialog(controlIds.loadingAdorner);
+            dialogManager.hideDialog(controlIds.loadingAdorner);
 
             const encodedError = <ErrorData>JSON.parse(error.responseText);
             messageToastManager.showMessageToast(encodedError.errorText);

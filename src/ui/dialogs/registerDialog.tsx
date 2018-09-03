@@ -26,6 +26,13 @@ export class RegisterDialog extends React.Component<RegisterProps, RegisterData>
         });
     }
 
+    invokeRegistration() {
+        sendHttpRequest("userManagement/registerUser", "post", { user: this.state.user, pwd: this.state.pwd }, (response) => {
+            messageToastManager.showMessageToast(response.data, 1000);
+            this.props.hide();
+        });
+    }
+
     render() {
 
         return <div className="formBox">
@@ -39,15 +46,17 @@ export class RegisterDialog extends React.Component<RegisterProps, RegisterData>
                 event => {
                     const newValue = event.target.value;
                     this.setState({ pwd: newValue });
-                }}></input>
-            <div className="dialogButton pointer" onClick={event => {
-
-                sendHttpRequest("userManagement/registerUser", "post", { user: this.state.user, pwd: this.state.pwd }, (response) => {
-                    messageToastManager.showMessageToast(response.data, 1000);
-                    this.props.hide();
-                });
-
-            }}>
+                }}
+                onKeyDown={
+                    event => {
+                        // check if enter was hit
+                        if (event.keyCode === 13) {
+                            this.invokeRegistration();
+                        }
+                    }
+                }
+            />
+            <div className="dialogButton pointer" onClick={this.invokeRegistration.bind(this)}>
                 <i className="fa fa-arrow-right"></i>
                 <div className="easyAdmin-navText">
                     Register
