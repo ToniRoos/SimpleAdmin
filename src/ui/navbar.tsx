@@ -55,24 +55,25 @@ export class Navbar extends React.Component<NavbarData> {
                     this.errorCallback
                 );
             }}>
-                <i className="fa fa-save fa-2x"></i>
+                <i className="far fa-save fa-2x"></i>
                 <div className="easyAdmin-navText">
-                    Speichern
+                    Save
                 </div>
             </div>
 
             <div className="flexGrowMax"></div>
 
             <div className="easyAdmin-navItem">
-                <i className="fa fa-file fa-1-5x"></i>
-                <div className="easyAdmin-navText">
-                    {this.props.tags.filter(element => element.tagName.match(/H\d/)).length}        Überschriften gefunden
-                    </div>
 
-                <i className="fa fa-align-left fa-1-5x"></i>
                 <div className="easyAdmin-navText">
-                    {this.props.tags.filter(element => element.tagName.match(/A|P/)).length} Texte      gefunden
-                    </div>
+                    {this.props.tags.filter(element => element.tagName.match(/H\d/)).length}x
+                </div>
+                <i className="fas fa-heading fa-1-5x"></i>
+                <div className="easyAdmin-navText">|</div>
+                <div className="easyAdmin-navText">
+                    {this.props.tags.filter(element => element.tagName.match(/A|P/)).length}x
+                </div>
+                <i className="fas fa-font fa-1-5x"></i>
             </div>
 
         </div>

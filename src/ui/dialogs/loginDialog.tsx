@@ -61,7 +61,7 @@ export class LoginDialog extends React.Component<LoginProps, LoginData> {
                 }
             />
             <div className="dialogButton pointer" onClick={this.invokeLogin.bind(this)}>
-                <i className="fa fa-arrow-right"></i>
+                <i className="fas fa-sign-in-alt"></i>
                 <div className="easyAdmin-navText">
                     Login
                 </div>

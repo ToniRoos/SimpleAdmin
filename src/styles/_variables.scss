@@ -1,11 +1,11 @@
-$bg-color: rgba(0,150,150,0.9);
+$bg-color: rgba(28, 209, 255,.9);
 $bg-color-lighter: lighten($bg-color, 10%);
 $bg-color-light: lighten($bg-color, 20%);
 $bg-color-light-transparentize: transparentize($bg-color-lighter, 0.2);
 $bg-color-inactive: rgba(200,200,200,0.9);
 $bg-color-inactive-dark: rgba(50,50,50,0.9);
 
-$textColor: #fff;
+$textColor: #222;
 $textSize: 18px;
 $textFont: Verdana, Geneva, Tahoma, sans-serif;
 
