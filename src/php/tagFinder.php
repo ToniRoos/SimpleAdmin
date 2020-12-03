@@ -16,10 +16,18 @@ function getAllTags($fileContent, &$allTags, $offset) {
     preg_match('/<\/[ahp]\d?>/', $fileContent, $nextEndingTagMatch, PREG_OFFSET_CAPTURE);
 
     if ($nextEndingTagMatch == null) {
+        // file ends -> all tags have been read
         return $allTags;
     }
 
-    if ($nextStartingTagMatch != null) {
+    $isOneMoreStartingTag = $nextStartingTagMatch != null;
+    if ($isOneMoreStartingTag) {
+
+        // ............example.............
+        // ...<a style="style1">foo1</a>...
+        //   /\                /\
+        //  startingTagPos    startingTagEndPos
+
         $startingTag = $nextStartingTagMatch[0][0];
         $startingTagPos = $nextStartingTagMatch[0][1];
         $startingTagEndPos = $startingTagPos + strlen($startingTag);
@@ -28,7 +36,9 @@ function getAllTags($fileContent, &$allTags, $offset) {
     $closingTag = $nextEndingTagMatch[0][0];
     $closingTagPos = $nextEndingTagMatch[0][1];
 
-    if ($nextStartingTagMatch != null && $startingTagPos < $closingTagPos) {
+    // is one more starting tag and is nested
+    if ($isOneMoreStartingTag && $startingTagPos < $closingTagPos) {
+
         $startingTagClass = new PartialTagData();
         $startingTagClass->tag = $startingTag;
         $startingTagClass->tagPos = $startingTagPos + $offset;
@@ -37,6 +47,7 @@ function getAllTags($fileContent, &$allTags, $offset) {
         $tagData->startingTag = $startingTagClass;
         $allTags[] = $tagData;
 
+        // search more nested tags or closing tag
         $closingTagClass = getAllTags(substr($fileContent, $startingTagEndPos), $allTags, $startingTagEndPos + $offset);
 
         $tagData->closingTag = $closingTagClass;
@@ -48,7 +59,7 @@ function getAllTags($fileContent, &$allTags, $offset) {
         
     } else {
 
-        // store closing tag and return to parent
+        // set closing tag and return to parent
         $tagData = new PartialTagData();
         $tagData->tag = $closingTag;
         $tagData->tagPos = $closingTagPos + $offset;

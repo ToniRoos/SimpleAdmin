@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack"
   },
-  "author": "",
+  "author": "Toni Roos",
   "license": "ISC",
   "devDependencies": {
     "@types/jquery": "^3.3.4",

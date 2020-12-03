@@ -41,23 +41,23 @@ createDiv(controlIds.popover, "hide");
 // navbar
 createDiv(controlIds.navbar);
 // login
-dialogManager.createDialog(<LoginDialog />, controlIds.loginDialog);
-dialogManager.createDialog(<RegisterDialog />, controlIds.registerDialog);
-sendHttpRequest("userManagement/appInitializedCheck", "post", {}, (response: any) => {
-    if (response.data.initialized) {
-        if (!response.data.sessionActive) {
-            dialogManager.showDialog(controlIds.loginDialog);
-        }
-    } else {
-        dialogManager.showDialog(controlIds.registerDialog);
-    }
-});
+// dialogManager.createDialog(<LoginDialog />, controlIds.loginDialog);
+// dialogManager.createDialog(<RegisterDialog />, controlIds.registerDialog);
+// sendHttpRequest("userManagement/appInitializedCheck", "post", {}, (response: any) => {
+//     if (response.data.initialized) {
+//         if (!response.data.sessionActive) {
+//             dialogManager.showDialog(controlIds.loginDialog);
+//         }
+//     } else {
+//         dialogManager.showDialog(controlIds.registerDialog);
+//     }
+// });
 
-// message toast
-createDiv(controlIds.messageToast);
-ReactDom.render(messageToastManager.getView(), document.getElementById(controlIds.messageToast));
-// loading spinner
-dialogManager.createDialog(<i className="fa fa-spinner rotate fa-4x"></i>, controlIds.loadingAdorner)
+// // message toast
+// createDiv(controlIds.messageToast);
+// ReactDom.render(messageToastManager.getView(), document.getElementById(controlIds.messageToast));
+// // loading spinner
+// dialogManager.createDialog(<i className="fa fa-spinner rotate fa-4x"></i>, controlIds.loadingAdorner)
 
 // get next available tag id and initalize app
 sendHttpRequest("nextAvailableIndex", "get", {}, (nextAvailableIndex) => {
